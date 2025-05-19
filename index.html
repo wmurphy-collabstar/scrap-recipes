@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style.css">
+    <title>Recipe Generator</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div class="page">
+      <h1>Recipe Generator</h1>
+      <p><span class="question">Not sure what to make for dinner?</span><span class="question">Take out too expensive?</span>Tell me what ingredients you have in your pantry and I'll give you <span class="question">5 dishes</span> that you could make <em>RIGHT NOW 🙂</em></p>
+      <div class="scraps-form-container" id="scraps-form-container">
+        <form id="scrap-form" method="POST">
+          <h1>Ingredient Form</h1>
+          <p>Ingredients you want to use (max of 10 is allowed)</p>
+          <input type="text" id="scrap-input" placeholder="Soy sauce">
+          <button class="form-button add-scrap-btn" type="button" id="add-scrap-btn">Add Ingredient</button>
+          <div class="scrap-list-container">
+            <ul id="scrap-list" class="scrap-list">
+          </ul>
+          </div>
+          <div id="pantry-container" class="pantry-container">
+            <p>Do you have the following pantry items?</p>
+            <div class="checklist" id="pantry-checklist">
+              <div>
+                <label for="ice" class="pantry-item">
+                  <input type="checkbox" id="ice" name="pantry" value="ice">
+                  <span class="pantry-label">Ice</span>
+                </label>
+                <label for="flour" class="pantry-item">
+                  <input type="checkbox" id="flour" name="pantry" value="flour">
+                  <span class="pantry-label">Flour</span>
+                </label>
+                <label for="sugar" class="pantry-item">
+                  <input type="checkbox" id="sugar" name="pantry" value="sugar,+cane sugar">
+                  <span class="pantry-label">Sugar/Cane Sugar</span>
+                </label>
+                <label for="olive-oil" class="pantry-item">
+                  <input type="checkbox" id="olive-oil" name="pantry" value="olive oil">
+                  <span class="pantry-label">Olive Oil</span>
+                </label>
+              </div>
+              <div>
+                <label for="vegetable-oil" class="pantry-item">
+                  <input type="checkbox" id="vegetable-oil" name="pantry" value="vegetable oil">
+                  <span class="pantry-label">Vegetable Oil</span>
+                </label>
+                <label for="other-oil" class="pantry-item">
+                  <input type="checkbox" id="other-oil" name="pantry" value="cooking oil,+cooking fat">
+                  <span class="pantry-label">Cooking Oil/Cooking Fat</span>
+                </label>
+                <label for="black-pepper" class="pantry-item">
+                  <input type="checkbox" id="" name="pantry" value="black pepper">
+                  <span class="pantry-label">Black Pepper</span>
+                </label>
+                <label for="salt" class="pantry-item">
+                  <input type="checkbox" id="salt" name="pantry" value="salt,+sea salt">
+                  <span class="pantry-label">Salt/Sea Salt</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div id="diet-container" class="form-container">
+            <p>Do you have any dietary restrictions?</p>
+            <label for="vegetarian">
+              <input type="radio" name="diet" value="vegetarian" id="vegetarian">
+              Vegetarian
+            </label>
+            <label for="vegan">
+              <input type="radio" name="diet" value="vegan" id="vegan">
+              Vegan
+            </label>
+            <label for="pescatarian">
+              <input type="radio" name="diet" value="pescatarian" id="pescatarian">
+              Pescatarian
+            </label>
+            <label for="other">
+              <input type="radio" name="diet" value="other" id="other">
+              Other
+            </label>
+          </div>
+          <button class="form-button submit-form-btn" type="submit">Find Recipe</button>
+        </form>
+      </div>
+      <div id="recipes-container" class="recipes-container">
+        <div class="recipe" id="recipe1">
+          <p class="recipe-title">Recipe 1</p>
+          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 1" id="recipe1-img" class="recipe-img"/>
+          <p class="recipe-description">Recipe 1 description</p>
+        </div>
+        <div class="recipe" id="recipe2">
+          <p class="recipe-title">Recipe 2</p>
+          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 2" id="recipe2-img" class="recipe-img"/>
+          <p class="recipe-description">Recipe 2 description</p>
+        </div>
+        <div class="recipe" id="recipe3">
+          <p class="recipe-title">Recipe 3</p>
+          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 3" id="recipe3-img" class="recipe-img"/>
+          <p class="recipe-description">Recipe 3 description</p>
+        </div>
+        <div class="recipe" id="recipe4">
+          <p class="recipe-title">Recipe 4</p>
+          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 4" id="recipe4-img" class="recipe-img"/>
+          <p class="recipe-description">Recipe 4 description</p>
+        </div>
+        <div class="recipe" id="recipe5">
+          <p class="recipe-title">Recipe 5</p>
+          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 5" id="recipe5-img" class="recipe-img"/>
+          <p class="recipe-description">Recipe 5 description</p>
+        </div>
+        <dialog class="full-recipe-dialog" id="full-recipe">
+          <h1>Current Recipe</h1>
+          <img src="./joyful-crepes-unsplash.jpg" alt="recipe info" id="full-recipe-img" class="full-recipe-img">
+          <p>Ingredients</p>
+          <ul id="current-recipe-ingredients">
+            <li>Bread</li>
+            <li>Butter</li>
+            <li>Sugar</li>
+            <li>Heavy cream</li>
+            <li>Milk</li>
+            <li>Eggs</li>
+          </ul>
+          <p>Instructions</p>
+          <ol id="current-recipe-instructions">
+            <li>Butter all slices of bread.</li>
+            <li>Add buttered bread standing up in a casserole dish.</li>
+            <li>In a bowl, mix the heavy cream, milk, sugar and eggs.</li>
+            <li>Pour mixture over the buttered bread. Make sure it covers all of the bread.</li>
+            <li>Wrap foil over the dish and put in oven for 25 main</li>
+            <li>Check for doneness with a fork (once inserted into pudding, should come out clean).</li>
+            <li>Serve and enjoy!</li>
+          </ol>
+          <button id="close-full-recipe" class="form-button">Close</button>
+        </dialog>
+      </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
