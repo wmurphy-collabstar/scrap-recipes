@@ -4,15 +4,28 @@ body{
 }
 
 .page{
-    border: 1px solid black;
     padding: 2em 4em;
+    text-align: center;
+    /*Colors and fonts*/
+    background-color: #A6AEFC;
+    /* background-color: #1e33f7; */
+    color: #000;
+    font-family: 'Share Tech', sans-serif;
+    font-size: 1.1rem;
 }
 
 .question{
     display: block;
-    padding: 1em 0 1em .5em;
-    margin: .5em 0;
-    border: 1px solid black;
+    padding: 1.5em 0;
+    margin: 2em 0;
+    /* border: 1px solid black; */
+    background: linear-gradient(to right, transparent 20%, #0718CF, transparent 80%);
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 1px 1px black;
+    letter-spacing: .1em;
+    font-weight: 700;
+
 }
 
 .scraps-form-container{
@@ -20,16 +33,29 @@ body{
     text-align: center;
     margin: 2rem auto;
     border-radius: 20px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 1rem;
     max-width: 50%;
+    /* background-color: #3e4ff8; */
+    background: linear-gradient(#3e4ff8, #3e4ff8) padding-box,
+              radial-gradient(ellipse at center, #3e4ff8 70%, transparent) border-box;
+    border: 15px solid transparent;
+    color: white;
+}
+
+.scrap-input {
+    padding: 1em 2em;
+    border: none;
+    border-radius: 20px;
+    font-family: "Share Tech", sans-serif;
+    font-size: 1rem;
 }
 
 .scrap-list-container{
     min-height: 15em;
     margin: 2rem;
     border-radius: 20px;
-    background-color: rgba(128,128,128,.3);
+    background-color: #5665f9;
 }
 
 .scrap-list{
@@ -44,7 +70,8 @@ body{
     margin-right: 1em;
     margin-bottom: 1rem;
     border-radius: 20px;
-    background-color: rgba(255, 0, 0, .3);
+    background-color: #0718CF;
+    color: white;
 }
 
 .pantry-container{
@@ -52,8 +79,9 @@ body{
 }
 
 .checklist{
+    border: 1px solid black;
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-around;
     /* align-items: start; */
     /* flex-wrap: wrap; */
     /* padding: 1em 1em 0 3em; */
@@ -64,17 +92,27 @@ body{
     /* margin: 0 1em 1em 0; */
     display: block;
     text-align: left;
-}
-
-.pantry-label{
-    width: 2em;
-    width: 0;
+    margin-bottom: 1em;
 }
 
 .form-button{
-    padding: 1em 2em;
-    border: none;
+    padding: .75em 1.5em;
+    border: 3px solid #0718CF;
     border-radius: 20px;
+    background-color: white;
+    color: #0718CF;
+    text-transform: uppercase;
+    font-family: "Share Tech", sans-serif;
+    font-size: 1rem;
+}
+
+.form-button:hover, .form-button:focus{
+    color: white;
+    background-color: #0718CF;
+}
+
+.form-button:active{
+    border-color: white;
 }
 
 .add-scrap-btn{
@@ -86,27 +124,33 @@ body{
 }
 
 .recipes-container{
-    display: flex;
+    display: none;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
 .recipe {
-    border: 1px solid black;
-    padding: 1em;
+    padding: 1em 1.5em;
+    border-radius: 20px;
     max-width: 15em;
     max-height: 20em;
     margin: 1em 0 2em 0;
+    background: linear-gradient(#0718CF, #0718CF) padding-box,
+              linear-gradient(-45deg, transparent, #0718CF 50%, transparent) border-box;
+    border: 5px solid transparent;
+    color: white;
 }
 
 .recipe-title{
-    color: green;
+    text-transform: uppercase;
+    font-size: 1.25rem;
 }
 
 .recipe-img{
     width: 100%;
     height: 10em;
     object-fit: cover;
+    border-radius: 20px;
 }
 
 .full-recipe-dialog{
@@ -114,8 +158,25 @@ body{
     width: 50%;
     height: 80%;
     max-width: 30em;
+    text-align: left;
+    border-radius: 20px;
+}
+
+.full-recipe-dialog::backdrop{
+    background-color: rgba(7, 24, 207,.5);
+}
+
+.full-recipe-dialog > .form-button{
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
 }
 
 .full-recipe-img{
     max-width: 100%;
+    border-radius: 20px;
+}
+
+.full-recipe-subtitle{
+    font-size: 1.25rem;
 }

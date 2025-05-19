@@ -1,9 +1,7 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
 import { fetchRecipesWithScrapsv1, fetchRecipeInstructions, fetchRecipeIngredients, fetchRecipePriceBreakdown, fetchRecipeCard } from './fetch.js';
 
+const scrapsFormContainer = document.querySelector("#scraps-form-container");
 const scrapForm = document.getElementById("scrap-form");
 const scrapInput = document.querySelector("#scrap-input");
 const scrapList = document.querySelector("#scrap-list");
@@ -39,6 +37,8 @@ scrapForm.addEventListener("submit", async (event) => {
         scraps.push(scrapEl.innerText);
     })
     console.log(scraps);
+    scrapsFormContainer.style.display = "none";
+    recipeContainer.style.display = "flex";
     // await fetchRecipesWithScraps(scraps);
 
 });

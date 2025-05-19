@@ -5,7 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/style.css">
-    <title>Recipe Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+    <title>Scrap Recipes</title>
   </head>
   <body>
     <div id="app"></div>
@@ -16,8 +19,8 @@
         <form id="scrap-form" method="POST">
           <h1>Ingredient Form</h1>
           <p>Ingredients you want to use (max of 10 is allowed)</p>
-          <input type="text" id="scrap-input" placeholder="Soy sauce">
-          <button class="form-button add-scrap-btn" type="button" id="add-scrap-btn">Add Ingredient</button>
+          <input type="text" id="scrap-input" class="scrap-input" placeholder="Soy sauce">
+          <button tabindex="0" class="form-button add-scrap-btn" type="button" id="add-scrap-btn">Add Ingredient</button>
           <div class="scrap-list-container">
             <ul id="scrap-list" class="scrap-list">
           </ul>
@@ -64,7 +67,7 @@
             </div>
           </div>
           <div id="diet-container" class="form-container">
-            <p>Do you have any dietary restrictions?</p>
+            <p>Do you follow a specific diet?</p>
             <label for="vegetarian">
               <input type="radio" name="diet" value="vegetarian" id="vegetarian">
               Vegetarian
@@ -112,9 +115,10 @@
           <p class="recipe-description">Recipe 5 description</p>
         </div>
         <dialog class="full-recipe-dialog" id="full-recipe">
+          <button id="close-full-recipe" class="form-button">Close</button>
           <h1>Current Recipe</h1>
           <img src="./joyful-crepes-unsplash.jpg" alt="recipe info" id="full-recipe-img" class="full-recipe-img">
-          <p>Ingredients</p>
+          <p class="full-recipe-subtitle">Ingredients</p>
           <ul id="current-recipe-ingredients">
             <li>Bread</li>
             <li>Butter</li>
@@ -123,7 +127,7 @@
             <li>Milk</li>
             <li>Eggs</li>
           </ul>
-          <p>Instructions</p>
+          <p class="full-recipe-subtitle">Instructions</p>
           <ol id="current-recipe-instructions">
             <li>Butter all slices of bread.</li>
             <li>Add buttered bread standing up in a casserole dish.</li>
@@ -133,7 +137,6 @@
             <li>Check for doneness with a fork (once inserted into pudding, should come out clean).</li>
             <li>Serve and enjoy!</li>
           </ol>
-          <button id="close-full-recipe" class="form-button">Close</button>
         </dialog>
       </div>
     </div>
