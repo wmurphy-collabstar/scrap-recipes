@@ -1,30 +1,20 @@
 /**
- * 
- * @param {string} scraps - list of ingredients in kitchen
+ * File containing all fetch requests to spoonacular API
  */
 
+// Headers that I use to pass my API key to the API for each GET request
 const headers = new Headers();
 headers.append("x-api-key", import.meta.env.VITE_API_KEY);
 
-async function fetchRecipesWithScrapsv1(scraps){
-    // GET https://api.spoonacular.com/recipes/findByIngredients
-    try{
-        const scrapsQuery = scraps.join(",+")
-        const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${scrapsQuery}&number=5&ranking=2`, {headers: headers});
-        const data = await response.json();
-        console.log("fetchRecipesWithScraps data");
-        if (data.status){
-            throw new Error(`${data.code}: ${data.message}`);
-        }else {
-            console.log(data);
-        }
-    }catch(error){
-        console.error(error);
-    }
 
-}
-
-async function fetchRecipesWithScrapsv2(scraps, assumePantry, diet){
+/**
+ * Fetches 5 recipes that follow the ingredient, pantry and diet requirements
+ * @param {string[]} scraps - list of ingredients user types into form
+ * @param {boolean} assumePantry - indicates whether user has pantry items or not
+ * @param {*} diet - kind of diet user follows (vegetarian, vegan, pescatarian or other)
+ * @returns Object containing necessary information for displaying all the recipes
+ */
+async function fetchRecipesWithScrapsEnhanced(scraps, assumePantry, diet){
     // GET https://api.spoonacular.com/recipes/complexSearch
     try{
         const scrapsQuery = scraps.join();
@@ -60,6 +50,26 @@ async function fetchRecipesWithScrapsv2(scraps, assumePantry, diet){
                     link: recipe.spoonacularSourceUrl
                 }
             });
+        }
+    }catch(error){
+        console.error(error);
+    }
+
+}
+
+/** Functions that I can use for expanding this project */
+
+async function fetchRecipesWithScrapsv1(scraps){
+    // GET https://api.spoonacular.com/recipes/findByIngredients
+    try{
+        const scrapsQuery = scraps.join(",+")
+        const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${scrapsQuery}&number=5&ranking=2`, {headers: headers});
+        const data = await response.json();
+        console.log("fetchRecipesWithScraps data");
+        if (data.status){
+            throw new Error(`${data.code}: ${data.message}`);
+        }else {
+            console.log(data);
         }
     }catch(error){
         console.error(error);
@@ -134,10 +144,5 @@ async function fetchRecipeCard(recipeID){
 }
 
 export {
-    fetchRecipesWithScrapsv1,
-    fetchRecipesWithScrapsv2,
-    fetchRecipeInstructions,
-    fetchRecipeIngredients,
-    fetchRecipePriceBreakdown,
-    fetchRecipeCard
+    fetchRecipesWithScrapsEnhanced
 };
