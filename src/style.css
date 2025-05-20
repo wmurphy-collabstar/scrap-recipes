@@ -79,7 +79,7 @@ body{
 }
 
 .checklist{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     justify-content: space-around;
     /* align-items: start; */
@@ -153,6 +153,11 @@ body{
     border-radius: 20px;
 }
 
+.recipe-description{
+    width: 15em;
+    font-size: 1rem;
+}
+
 .full-recipe-dialog{
     padding: 2em;
     width: 50%;
@@ -168,8 +173,8 @@ body{
 
 .full-recipe-dialog > .form-button{
     position: absolute;
-    top: 2rem;
-    right: 2.5rem;
+    top: 1em;
+    right: 1em;
 }
 
 .full-recipe-img{
