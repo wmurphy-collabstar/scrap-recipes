@@ -24,17 +24,42 @@ async function fetchRecipesWithScrapsv1(scraps){
 
 }
 
-async function fetchRecipesWithScrapsv2(scraps){
+async function fetchRecipesWithScrapsv2(scraps, assumePantry, diet){
     // GET https://api.spoonacular.com/recipes/complexSearch
     try{
-        const scrapsQuery = scraps.join(",+")
-        const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${scrapsQuery}&number=5&ranking=2`, {headers: headers});
+        const scrapsQuery = scraps.join();
+        const dietQuery = diet === "other" ? "": "&diet="+diet;
+        console.log(dietQuery);
+        const url = `https://api.spoonacular.com/recipes/complexSearch?query=dinner&includeIngredients=${scrapsQuery}&instructionsRequired=true&addRecipeInformation=true&addRecipeInstructions=true&addRecipeNutrition=true&ignorePantry=${assumePantry === true ? "false" : "true"}${dietQuery}&sort=max-used-ingredients&sortDirection=asc&number=5`;
+        console.log(url);
+        const response = await fetch(url, {headers: headers});
         const data = await response.json();
-        console.log("fetchRecipesWithScraps data");
+        console.log("fetchRecipesWithScrapsv2 data");
         if (data.status){
             throw new Error(`${data.code}: ${data.message}`);
         }else {
             console.log(data);
+            return data.results.map(recipe => {
+                return {
+                    id: recipe.id,
+                    title: recipe.title,
+                    image: recipe.image,
+                    credits: recipe.creditsText,
+                    license: recipe.license,
+                    summary: recipe.summary,
+                    ingredients: recipe.nutrition.ingredients.map(ingredient => {
+                        return {
+                            name: ingredient.name,
+                            amount: ingredient.amount,
+                            unit: ingredient.unit
+                        }
+                    }),
+                    instructions: recipe.analyzedInstructions[0].steps.map(step => step.step),
+                    readyInMinutes: recipe.readyInMinutes,
+                    servings: recipe.servings,
+                    link: recipe.spoonacularSourceUrl
+                }
+            });
         }
     }catch(error){
         console.error(error);
