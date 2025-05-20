@@ -38,7 +38,7 @@
                   <span class="pantry-label">Flour</span>
                 </label>
                 <label for="sugar" class="pantry-item">
-                  <input type="checkbox" id="sugar" name="pantry" value="sugar,+cane sugar">
+                  <input type="checkbox" id="sugar" name="pantry" value="sugar,cane sugar">
                   <span class="pantry-label">Sugar/Cane Sugar</span>
                 </label>
                 <label for="olive-oil" class="pantry-item">
@@ -52,15 +52,15 @@
                   <span class="pantry-label">Vegetable Oil</span>
                 </label>
                 <label for="other-oil" class="pantry-item">
-                  <input type="checkbox" id="other-oil" name="pantry" value="cooking oil,+cooking fat">
+                  <input type="checkbox" id="other-oil" name="pantry" value="cooking oil,cooking fat">
                   <span class="pantry-label">Cooking Oil/Cooking Fat</span>
                 </label>
                 <label for="black-pepper" class="pantry-item">
-                  <input type="checkbox" id="" name="pantry" value="black pepper">
+                  <input type="checkbox" id="black-pepper" name="pantry" value="black pepper">
                   <span class="pantry-label">Black Pepper</span>
                 </label>
                 <label for="salt" class="pantry-item">
-                  <input type="checkbox" id="salt" name="pantry" value="salt,+sea salt">
+                  <input type="checkbox" id="salt" name="pantry" value="salt,sea salt">
                   <span class="pantry-label">Salt/Sea Salt</span>
                 </label>
               </div>
@@ -89,56 +89,35 @@
         </form>
       </div>
       <div id="recipes-container" class="recipes-container">
-        <div class="recipe" id="recipe1">
-          <p class="recipe-title">Recipe 1</p>
-          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 1" id="recipe1-img" class="recipe-img"/>
-          <p class="recipe-description">Recipe 1 description</p>
-        </div>
-        <div class="recipe" id="recipe2">
-          <p class="recipe-title">Recipe 2</p>
-          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 2" id="recipe2-img" class="recipe-img"/>
-          <p class="recipe-description">Recipe 2 description</p>
-        </div>
-        <div class="recipe" id="recipe3">
-          <p class="recipe-title">Recipe 3</p>
-          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 3" id="recipe3-img" class="recipe-img"/>
-          <p class="recipe-description">Recipe 3 description</p>
-        </div>
-        <div class="recipe" id="recipe4">
-          <p class="recipe-title">Recipe 4</p>
-          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 4" id="recipe4-img" class="recipe-img"/>
-          <p class="recipe-description">Recipe 4 description</p>
-        </div>
-        <div class="recipe" id="recipe5">
-          <p class="recipe-title">Recipe 5</p>
-          <img src="./joyful-crepes-unsplash.jpg" alt="recipe 5" id="recipe5-img" class="recipe-img"/>
-          <p class="recipe-description">Recipe 5 description</p>
-        </div>
-        <dialog class="full-recipe-dialog" id="full-recipe">
-          <button id="close-full-recipe" class="form-button">Close</button>
-          <h1>Current Recipe</h1>
-          <img src="./joyful-crepes-unsplash.jpg" alt="recipe info" id="full-recipe-img" class="full-recipe-img">
-          <p class="full-recipe-subtitle">Ingredients</p>
-          <ul id="current-recipe-ingredients">
-            <li>Bread</li>
-            <li>Butter</li>
-            <li>Sugar</li>
-            <li>Heavy cream</li>
-            <li>Milk</li>
-            <li>Eggs</li>
-          </ul>
-          <p class="full-recipe-subtitle">Instructions</p>
-          <ol id="current-recipe-instructions">
-            <li>Butter all slices of bread.</li>
-            <li>Add buttered bread standing up in a casserole dish.</li>
-            <li>In a bowl, mix the heavy cream, milk, sugar and eggs.</li>
-            <li>Pour mixture over the buttered bread. Make sure it covers all of the bread.</li>
-            <li>Wrap foil over the dish and put in oven for 25 main</li>
-            <li>Check for doneness with a fork (once inserted into pudding, should come out clean).</li>
-            <li>Serve and enjoy!</li>
-          </ol>
-        </dialog>
+        Loading...
       </div>
+      <dialog class="full-recipe-dialog" id="full-recipe">
+        <button id="close-full-recipe" class="form-button">Close</button>
+        <h1 id="full-recipe-title">Current Recipe</h1>
+        <p id="full-recipe-summary">Summary</p>
+        <a id="full-recipe-link" href="#" target="_blank"><img src="./joyful-crepes-unsplash.jpg" alt="recipe info" id="full-recipe-img" class="full-recipe-img"></a>
+        <p id="full-recipe-time"></p>
+        <p id="full-recipe-servings"></p>
+        <p class="full-recipe-subtitle">Ingredients</p>
+        <ul id="full-recipe-ingredients">
+          <li>Bread</li>
+          <li>Butter</li>
+          <li>Sugar</li>
+          <li>Heavy cream</li>
+          <li>Milk</li>
+          <li>Eggs</li>
+        </ul>
+        <p class="full-recipe-subtitle">Instructions</p>
+        <ol id="full-recipe-instructions">
+          <li>Butter all slices of bread.</li>
+          <li>Add buttered bread standing up in a casserole dish.</li>
+          <li>In a bowl, mix the heavy cream, milk, sugar and eggs.</li>
+          <li>Pour mixture over the buttered bread. Make sure it covers all of the bread.</li>
+          <li>Wrap foil over the dish and put in oven for 25 main</li>
+          <li>Check for doneness with a fork (once inserted into pudding, should come out clean).</li>
+          <li>Serve and enjoy!</li>
+        </ol>
+      </dialog>
     </div>
     <script type="module" src="./src/main.js"></script>
   </body>
