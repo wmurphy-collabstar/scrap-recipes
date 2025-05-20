@@ -79,7 +79,7 @@ scrapForm.addEventListener("submit", async (event) => {
     const recipes = recipeData.map(recipe => {
         return (`<div class="recipe" id="${recipe.id}">
           <p class="recipe-title">${recipe.title}</p>
-          <img src="${recipe.image || "./wolf-zimmerman-cloud-unsplash.jpg"}" alt="${recipe.credits}" id="${recipe.id}-img" class="recipe-img"/>
+          <img src="${recipe.image || "./wolf-zimmerman-cloud-unsplash.jpg"}" alt="${recipe.title}" id="${recipe.id}-img" class="recipe-img"/>
           <p class="recipe-description">${recipe.summary.split(". ")[0]}.</p>
         </div>`);
     });

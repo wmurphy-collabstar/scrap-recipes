@@ -156,6 +156,8 @@ body{
 .recipe-description{
     width: 15em;
     font-size: 1rem;
+    height: 4.5em;
+    overflow: hidden;
 }
 
 .full-recipe-dialog{
