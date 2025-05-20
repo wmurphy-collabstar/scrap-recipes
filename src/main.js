@@ -1,6 +1,7 @@
 import './style.css'
-import { fetchRecipesWithScrapsv1, fetchRecipesWithScrapsv2, fetchRecipeInstructions, fetchRecipeIngredients, fetchRecipePriceBreakdown, fetchRecipeCard } from './fetch.js';
+import { fetchRecipesWithScrapsEnhanced } from './fetch.js';
 
+// HTML elements I need to dynaimcally add content to or interact with
 const scrapsFormContainer = document.querySelector("#scraps-form-container");
 const scrapForm = document.getElementById("scrap-form");
 const scrapInput = document.querySelector("#scrap-input");
@@ -12,6 +13,7 @@ const recipeContainer = document.querySelector("#recipes-container");
 const fullRecipeDialog = document.querySelector("#full-recipe");
 const closeRecipeModal = document.querySelector("#close-full-recipe");
 
+// Object containing all document elements inside the recipe dialog element
 const dialogElements = {
     title: document.getElementById("full-recipe-title"),
     summary: document.getElementById("full-recipe-summary"),
@@ -23,6 +25,7 @@ const dialogElements = {
     instructions: document.getElementById("full-recipe-instructions")
 };
 
+// Global variable containing all recipe data from API call
 let recipeData = '';
 
 
@@ -67,25 +70,34 @@ scrapForm.addEventListener("submit", async (event) => {
     }
 
     console.log(diet);
-    if (pantry.length === 8){
-        // console.log(scraps.join());
-        recipeData = await fetchRecipesWithScrapsv2(scraps, true, diet);
-    }else{
-        scraps.push(...pantry);
-        // console.log(scraps.join());
-        recipeData = await fetchRecipesWithScrapsv2(scraps, false, diet);
+
+    try {
+        if (pantry.length === 8){
+            recipeData = await fetchRecipesWithScrapsEnhanced(scraps, true, diet);
+        }else{
+            scraps.push(...pantry);
+            recipeData = await fetchRecipesWithScrapsEnhanced(scraps, false, diet);
+        }
+        console.log(recipeData);
+        if (recipeData.length === 0){
+            throw new Error("No recipes returned");
+        }
+        const recipes = recipeData.map(recipe => {
+            return (`<div class="recipe" id="${recipe.id}">
+            <p class="recipe-title">${recipe.title}</p>
+            <img src="${recipe.image || "./wolf-zimmerman-cloud-unsplash.jpg"}" alt="${recipe.title}" id="${recipe.id}-img" class="recipe-img"/>
+            <p class="recipe-description">${recipe.summary.split(". ")[0]}.</p>
+            </div>`);
+        });
+        recipeContainer.innerHTML = recipes.join("");
+        scrapsFormContainer.style.display = "none";
+        recipeContainer.style.display = "flex";
+    }catch(err){
+        recipeContainer.innerHTML = `<strong>I couldn't retrieve the recipes you were looking for. You can reload the page and try again, or try another day. If you try again, making sure you spell the ingredients correctly when adding them. I'm going to catch some sleep, so good night!</strong>`;
+    }finally{
+        scrapsFormContainer.style.display = "none";
+        recipeContainer.style.display = "flex";
     }
-    console.log(recipeData);
-    const recipes = recipeData.map(recipe => {
-        return (`<div class="recipe" id="${recipe.id}">
-          <p class="recipe-title">${recipe.title}</p>
-          <img src="${recipe.image || "./wolf-zimmerman-cloud-unsplash.jpg"}" alt="${recipe.title}" id="${recipe.id}-img" class="recipe-img"/>
-          <p class="recipe-description">${recipe.summary.split(". ")[0]}.</p>
-        </div>`);
-    });
-    recipeContainer.innerHTML = recipes.join("");
-    scrapsFormContainer.style.display = "none";
-    recipeContainer.style.display = "flex";
     // await fetchRecipesWithScraps(scraps);
 
 });
@@ -116,8 +128,3 @@ closeRecipeModal.addEventListener("click", (event) => {
     console.log(closeRecipeModal);
     fullRecipeDialog.close();
 })
-// console.log(fetchRecipesWithScrapsv1("apples"));
-// console.log(fetchRecipeCard(4632));
-// console.log(fetchRecipesWithScrapsv2(["balsamic vinegar"]));
-
-// fullRecipeDialog.showModal();
