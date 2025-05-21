@@ -38,7 +38,7 @@ function addScraps(){
         newScrapBullet.innerText = scrap;
         scrapList.append(newScrapBullet);
     }
-    console.log(scrapList.children.length);
+    // console.log(scrapList.children.length);
     if (scrapList.children.length > 9){
         scrapInput.disabled = true;
         addScrapBtn.disabled = true;
@@ -119,16 +119,16 @@ function renderError(){
 scrapForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const scraps = getListOfScraps();
-    console.log(scraps);
+    // console.log(scraps);
 
     const pantry = getPantryItemsPicked();
 
     const diet = getDiet();
-    console.log(diet);
+    // console.log(diet);
 
     try {
         recipeData = await callAPI(scraps, pantry, diet);
-        console.log(recipeData);
+        // console.log(recipeData);
         if (recipeData.length === 0){
             throw new Error("No recipes returned");
         }
@@ -167,7 +167,7 @@ recipeContainer.addEventListener("click", (event) => {
     if (!event.target.className === "recipe"){return;}
     const recipeID = event.target.id;
     const fullRecipe = recipeData.find(recipe => recipe.id === parseInt(recipeID));
-    console.log(fullRecipe);
+    // console.log(fullRecipe);
     if (fullRecipe === undefined) {return;}
     populateRecipeModal(fullRecipe);
     fullRecipeDialog.showModal();

@@ -19,16 +19,16 @@ async function fetchRecipesWithScrapsEnhanced(scraps, assumePantry, diet){
     try{
         const scrapsQuery = scraps.join();
         const dietQuery = diet === "other" ? "": "&diet="+diet;
-        console.log(dietQuery);
+        // console.log(dietQuery);
         const url = `https://api.spoonacular.com/recipes/complexSearch?query=dinner&includeIngredients=${scrapsQuery}&instructionsRequired=true&addRecipeInformation=true&addRecipeInstructions=true&addRecipeNutrition=true&ignorePantry=${assumePantry === true ? "false" : "true"}${dietQuery}&sort=max-used-ingredients&sortDirection=asc&number=5`;
-        console.log(url);
+        // console.log(url);
         const response = await fetch(url, {headers: headers});
         const data = await response.json();
-        console.log("fetchRecipesWithScrapsv2 data");
+        // console.log("fetchRecipesWithScrapsv2 data");
         if (data.status){
             throw new Error(`${data.code}: ${data.message}`);
         }else {
-            console.log(data);
+            // console.log(data);
             return data.results.map(recipe => {
                 return {
                     id: recipe.id,
