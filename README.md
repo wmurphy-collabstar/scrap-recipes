@@ -9,7 +9,7 @@
 
 
 Live version:
-[Scrap Recipes](#)
+[Scrap Recipes](https://scrap-recipes.netlify.app/)
 
 ## Features
 - A form that asks a user for the ingredients in their kitchen, what pantry staples they have, and if they follow a diet
